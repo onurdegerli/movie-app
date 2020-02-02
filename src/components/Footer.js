@@ -2,9 +2,11 @@ import React from 'react';
 
 export const Footer = props => {
     return (
-        <div>
-            Footer
-        </div>
+        <footer className="text-muted">
+            <div className="container">
+                <p>Footer!</p>
+            </div>
+        </footer>
     )
 }
 
