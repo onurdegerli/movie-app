@@ -5,8 +5,6 @@ import Body from './components/Body';
 import Footer from './components/Footer';
 
 function App() {
-
-  const apiKey = 'c7627767';
   return (
     <div>
         <Header />
