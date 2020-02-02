@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchResultBox from './SearchResultBox'
+import SearchResultBox from './ResultBox'
 
 class SearchResults extends React.Component {
     render() {

@@ -1,6 +1,6 @@
 import React from 'react';
-import SearchBox from './SearchBox';
-import SearchResults from './SearchResults';
+import SearchBox from './Search/Box';
+import SearchResults from './Search/Results';
 
 class Body extends React.Component {
 
