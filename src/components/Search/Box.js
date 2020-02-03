@@ -18,8 +18,17 @@ class SearchBox extends React.Component {
             query: event.target.value
         })
     }
+
+    componentDidMount() {
+        this.search();
+    }
     
     handleSubmit(event) {
+        this.search();
+        event.preventDefault();
+    }
+
+    search() {
         axios.get(this.props.apiUrl, {
             params: {
               s: this.state.query,
@@ -35,8 +44,6 @@ class SearchBox extends React.Component {
           .catch((error) => {
             console.log(error);
           });
-
-        event.preventDefault();
     }
 
     render() {
