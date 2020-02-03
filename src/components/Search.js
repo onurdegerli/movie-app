@@ -2,7 +2,7 @@ import React from 'react';
 import SearchBox from './Search/Box';
 import SearchResults from './Search/Results';
 
-class Body extends React.Component {
+class Search extends React.Component {
 
     constructor(props) {
         super(props);
@@ -30,4 +30,4 @@ class Body extends React.Component {
     }
 }
 
-export default Body;
+export default Search;

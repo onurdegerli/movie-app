@@ -1,15 +1,30 @@
 import React from 'react';
 import './App.css';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
+import Search from './components/Search';
+import WishList from './components/WishList';
 import Header from './components/Header';
-import Body from './components/Body';
 import Footer from './components/Footer';
 
 function App() {
   return (
     <div>
+      <Router>
         <Header />
-        <Body />
+        <Switch>
+            <Route exact path="/">
+                <Search />
+            </Route>
+            <Route exact path="/wishList">
+                <WishList />
+            </Route>
+        </Switch>
         <Footer />
+      </Router>
     </div>
   );
 }
