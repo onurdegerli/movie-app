@@ -1,9 +1,9 @@
 import React from 'react';
 
 class SearchResultBox extends React.Component {
-
     constructor(props) {
         super(props);
+        this.defaultPoster = 'https://via.placeholder.com/348x500?text=No%20Poster';
         this.state = {
             isInWishList: false,
             isInWatchedList: false,
@@ -46,9 +46,15 @@ class SearchResultBox extends React.Component {
     }
 
     componentDidMount() {
+
+        const poster = this.props.result.Poster !== 'N/A'
+            ? this.props.result.Poster
+            : this.defaultPoster;
+
         this.setState({
             isInWishList: this.checkInLocalStorage('wishList'),
             isInWatchedList: this.checkInLocalStorage('watchedList'),
+            poster: poster,
         });
     }
 
@@ -56,7 +62,7 @@ class SearchResultBox extends React.Component {
         return (
             <div className="col-md-4" key={this.props.result.imdbID}>
                 <div className="card mb-4 box-shadow">
-                    <img className="card-img-top" src={this.props.result.Poster} alt={this.props.result.Title} />
+                <img className="card-img-top" src={this.state.poster} alt={this.props.result.Title} />
                     <div className="card-body">
                         <p className="card-text">{this.props.result.Title}</p>
                         <div className="d-flex justify-content-between align-items-center">

@@ -6,7 +6,7 @@ class SearchBox extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            query: 'new',
+            query: 'eski',
         }
 
         this.handleChangeQuery = this.handleChangeQuery.bind(this);
