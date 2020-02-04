@@ -17,10 +17,24 @@ class SearchResultBox extends React.Component {
         });
     }
     
+    handleRemoveFromWhishlist() {
+        this.removeFromLocalStorage('wishList');
+        this.setState({
+            isInWishList: false,
+        });
+    }
+    
     handleAddToWatch() {
         this.setToLocalStorage('watchedList');
         this.setState({
             isInWatchedList: true,
+        });
+    }
+
+    handleRemoveFromWatch() {
+        this.removeFromLocalStorage('watchedList');
+        this.setState({
+            isInWatchedList: false,
         });
     }
 
@@ -37,6 +51,18 @@ class SearchResultBox extends React.Component {
 
         return true;
     }
+    
+    removeFromLocalStorage(key) {
+        let list = JSON.parse(localStorage.getItem(key));
+        if (!list) {
+            return true
+        } 
+
+        delete list[this.props.result.imdbID]; 
+        localStorage.setItem(key, JSON.stringify(list));
+
+        return true;
+    }
 
     checkInLocalStorage(key) {
         let list = JSON.parse(localStorage.getItem(key));
@@ -46,7 +72,6 @@ class SearchResultBox extends React.Component {
     }
 
     componentDidMount() {
-
         const poster = this.props.result.Poster !== 'N/A'
             ? this.props.result.Poster
             : this.defaultPoster;
