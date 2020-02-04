@@ -10,50 +10,45 @@ class SearchResultBox extends React.Component {
         };
     }
 
-    handleAddToWhishlist(imdbID) {
-        this.setToLocalStorage('wishList', imdbID);
+    handleAddToWhishlist() {
+        this.setToLocalStorage('wishList');
         this.setState({
             isInWishList: true,
         });
     }
     
-    handleAddToWatch(imdbID) {
-        this.setToLocalStorage('watchedList', imdbID);
+    handleAddToWatch() {
+        this.setToLocalStorage('watchedList');
         this.setState({
             isInWatchedList: true,
         });
     }
 
-    setToLocalStorage(key, value) {
+    setToLocalStorage(key) {
         let list = JSON.parse(localStorage.getItem(key));
         if (!list) {
-            let newlist = [];
-            newlist[0] = value
-            localStorage.setItem(key, JSON.stringify(newlist))
+            let newList = {};
+            newList[this.props.result.imdbID] = this.props.result;
+            localStorage.setItem(key, JSON.stringify(newList));
         } else {
-
-            if (list.indexOf(value) > -1) {
-                return true;
-            }
-
-            list[list.length] = value;
-            localStorage.setItem(key, JSON.stringify(list))
+            list[this.props.result.imdbID] = this.props.result;
+            localStorage.setItem(key, JSON.stringify(list));
         }
 
         return true;
     }
 
-    checkInLocalStorage(key, value) {
+    checkInLocalStorage(key) {
         let list = JSON.parse(localStorage.getItem(key));
-        return list.indexOf(value) > -1
+        return list && list[this.props.result.imdbID]
             ? true
             : false;
     }
 
     componentDidMount() {
         this.setState({
-            isInWishList: this.checkInLocalStorage('wishList', this.props.result.imdbID),
-            isInWatchedList: this.checkInLocalStorage('watchedList', this.props.result.imdbID),
+            isInWishList: this.checkInLocalStorage('wishList'),
+            isInWatchedList: this.checkInLocalStorage('watchedList'),
         });
     }
 
@@ -71,7 +66,7 @@ class SearchResultBox extends React.Component {
                                         type="button" 
                                         className="btn btn-sm btn-outline-secondary"
                                         onClick={() =>
-                                            this.handleAddToWhishlist(this.props.result.imdbID)
+                                            this.handleAddToWhishlist()
                                         }
                                     >
                                         Add to wish
@@ -81,7 +76,7 @@ class SearchResultBox extends React.Component {
                                         type="button" 
                                         className="btn btn-sm btn-outline-secondary"
                                         onClick={() =>
-                                            this.handleRemoveFromWhishlist(this.props.result.imdbID)
+                                            this.handleRemoveFromWhishlist()
                                         }
                                     >
                                         Wished
@@ -93,7 +88,7 @@ class SearchResultBox extends React.Component {
                                         type="button" 
                                         className="btn btn-sm btn-outline-secondary"
                                         onClick={() =>
-                                            this.handleAddToWatch(this.props.result.imdbID)
+                                            this.handleAddToWatch()
                                         }
                                     >
                                         Add to watch
@@ -103,7 +98,7 @@ class SearchResultBox extends React.Component {
                                         type="button" 
                                         className="btn btn-sm btn-outline-secondary"
                                         onClick={() =>
-                                            this.handleRemoveFromWatch(this.props.result.imdbID)
+                                            this.handleRemoveFromWatch()
                                         }
                                     >
                                         Watched

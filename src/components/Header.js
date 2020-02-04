@@ -11,7 +11,7 @@ export const Header = props => {
                         <strong>MMMDB(My Movie Database)</strong>
                     </a>
                     <nav className="my-2 my-md-0 mr-md-3">
-                        <Link className="p-2 text-white" to="/search">Search</Link>
+                        <Link className="p-2 text-white" to="/">Search</Link>
                         <Link className="p-2 text-white" to="/wishList">Whishlist</Link>
                         <Link className="p-2 text-white" to="/watchedList">Watched</Link>
                     </nav>

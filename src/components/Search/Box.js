@@ -36,10 +36,20 @@ class SearchBox extends React.Component {
             }
           })
           .then((response) => {
-            this.props.handleResults(
-                response.data.totalResults, 
-                response.data.Search
-            );
+            if (response.data.Response === 'False'
+                && response.data.Error !== '') {
+                    this.props.handleResults(
+                        0,
+                        [],
+                        response.data.Error
+                    );
+            } else {
+                this.props.handleResults(
+                    response.data.totalResults, 
+                    response.data.Search,
+                    ''
+                );
+            }
           })
           .catch((error) => {
             console.log(error);

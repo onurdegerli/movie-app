@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import Search from './components/Search';
 import WishList from './components/WishList';
+import WatchedList from './components/WatchedList';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
@@ -21,6 +22,9 @@ function App() {
             </Route>
             <Route exact path="/wishList">
                 <WishList />
+            </Route>
+            <Route exact path="/watchedList">
+                <WatchedList />
             </Route>
         </Switch>
         <Footer />

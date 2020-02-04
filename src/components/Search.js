@@ -5,18 +5,22 @@ import SearchResults from './Search/Results';
 class Search extends React.Component {
 
     constructor(props) {
+        // localStorage.removeItem('wishList')
+        // localStorage.removeItem('watchedList')
         super(props);
         this.state = {
             total: 0,
             results: [],
+            error: '',
         }
         this.handleResults = this.handleResults.bind(this)
     }
 
-    handleResults(total, results) {
+    handleResults(total, results, error) {
         this.setState({
             total: total,
             results: results,
+            error: error,
         });
     }
 
@@ -24,7 +28,11 @@ class Search extends React.Component {
         return (
             <div>
                 <SearchBox handleResults={this.handleResults} />
-                <SearchResults total={this.state.total} results={this.state.results} />
+                <SearchResults 
+                    total={this.state.total} 
+                    results={this.state.results}
+                    error={this.state.error}
+                />
             </div>
         );
     }
