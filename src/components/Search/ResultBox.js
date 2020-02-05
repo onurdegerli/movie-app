@@ -71,16 +71,28 @@ class SearchResultBox extends React.Component {
             : false;
     }
 
-    componentDidMount() {
-        const poster = this.props.result.Poster !== 'N/A'
+    getPoster() {
+        return this.props.result.Poster !== 'N/A'
             ? this.props.result.Poster
             : this.defaultPoster;
+    }
 
+    componentDidMount() {
         this.setState({
             isInWishList: this.checkInLocalStorage('wishList'),
             isInWatchedList: this.checkInLocalStorage('watchedList'),
-            poster: poster,
+            poster: this.getPoster(),
         });
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.result.imdbID !== prevProps.result.imdbID) {
+            this.setState({
+                isInWishList: this.checkInLocalStorage('wishList'),
+                isInWatchedList: this.checkInLocalStorage('watchedList'),
+                poster: this.getPoster(),
+            });
+        }
     }
 
     render() {
